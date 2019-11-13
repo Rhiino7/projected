@@ -5,7 +5,7 @@
  */
 package my.packages;
 
-import my.packages.view.NewJFrame;
+import my.packages.view.initB;
 import my.packages.utilities.DBconnection;
 
 /**
@@ -26,7 +26,7 @@ public class ProjectED {
         //empresa.addUsuario("cesar", "solano", 22, "rhino", "1234", "Cedula", -1, "masculino", "csolanoc@unal.edu.co", "bogota",-1, 0, 1);
         //empresa.addUsuario("Cesar", "Solano", 22, "cesar123", "cesar123", "Cedula", 1, "masculino", "cesar123@", "bogota", 123, 0, 1);
         
-        NewJFrame frame = new NewJFrame(empresa, empresa.getConnection());
+        initB frame = new initB(empresa, empresa.getConnection());
         frame.setVisible(true);
     }
     
