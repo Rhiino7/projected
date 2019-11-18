@@ -88,6 +88,11 @@ public class inicioUsuario extends javax.swing.JFrame {
 
             }
         ));
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tabla);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -161,6 +166,11 @@ public class inicioUsuario extends javax.swing.JFrame {
         this.perfilUsuario.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+        // TODO add your handling code here:
+        int filaS = tabla.rowAtPoint(evt.getPoint());
+    }//GEN-LAST:event_tablaMouseClicked
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

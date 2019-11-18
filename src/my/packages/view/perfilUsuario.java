@@ -104,6 +104,11 @@ public class perfilUsuario extends javax.swing.JFrame {
                 jButton6MouseClicked(evt);
             }
         });
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         jPanel4.add(jButton6);
 
         jButton5.setText("Volver");
@@ -218,7 +223,9 @@ public class perfilUsuario extends javax.swing.JFrame {
         int i = 0;
         for (String dato : usuario) {
             info[i] = dato;
+            //System.out.println(info[i]);
             ++i;
+            
         }
         
         nombre.setText(info[0]);
@@ -242,24 +249,35 @@ public class perfilUsuario extends javax.swing.JFrame {
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         // TODO add your handling code here:
-        info[0] = nombre.getText();
-        info[1] = apellido.getText();
-        info[2] = edad.getText();
-        info[3] = user.getText();
-        info[4] = pass.getText();
-        info[5] = id.getText();
-        info[6] = numid.getText();
-        info[7] = genero.getText();
-        info[8] = correo.getText();
-        info[9] = ciudad.getText();
-        info[10] = number.getText();
+        for (String string : info) {
+            System.out.println(string);
+        }
+        String[] temp = new String[11];
         
-        if(empresa.getConnection().updateUsuario(info)){
+        temp[0] = nombre.getText();
+        temp[1] = apellido.getText();
+        temp[2] = edad.getText();
+        temp[3]= user.getText();
+        temp[4] = pass.getText();
+        temp[5] = id.getText();
+        temp[6] = numid.getText();
+        temp[7] = genero.getText();
+        temp[8] = correo.getText();
+        temp[9] = ciudad.getText();
+        temp[10] = number.getText();
+        
+        
+        if(empresa.getConnection().updateUsuario(temp, info[3])){
             System.out.println("Actualizado");
+            this.fill();
         }else{
             System.out.println("No actualizado");
         }
     }//GEN-LAST:event_jButton6MouseClicked
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -269,10 +287,6 @@ public class perfilUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField edad;
     private javax.swing.JTextField genero;
     private javax.swing.JTextField id;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
@@ -286,8 +300,6 @@ public class perfilUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField number;

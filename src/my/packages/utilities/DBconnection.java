@@ -221,7 +221,7 @@ public class DBconnection {
            System.out.println("Opened database successfully");
 
            stmt = c.createStatement();
-           ResultSet rs = stmt.executeQuery( "SELECT * FROM USUARIO WHERE USER='"+user+"';" );
+           ResultSet rs = stmt.executeQuery("SELECT * FROM USUARIO WHERE USER='"+user+"';");
            
            while ( rs.next() ) {
               String name = rs.getString(2);
@@ -354,7 +354,7 @@ public class DBconnection {
         return true;
     }
     
-    public boolean updateUsuario(String[] info){
+    public boolean updateUsuario(String[] info, String user){
         Connection c = null;
         Statement stmt = null;
 
@@ -365,11 +365,16 @@ public class DBconnection {
            System.out.println("Opened database successfully");
            int iden = 0;
            
-           String stmt1 = "SELECT ID FROM USUARIO WHERE USER='"+info[3]+"';";
+           
+           /*
+           String nick = info[3];
+           
+           ResultSet rs = stmt.executeQuery("SELECT * FROM USUARIO WHERE USER='"+user+"';");
+           String stmt1 = "SELECT ID FROM USUARIO WHERE USER='"+nick+"';";
            ResultSet rs = stmt.executeQuery(stmt1);
            while(rs.next()){
                iden = rs.getInt("ID");
-           }
+           }*/
            
            String name = info[0];
            String apellido = info[1];
@@ -385,11 +390,11 @@ public class DBconnection {
            
            stmt = c.createStatement();
            String sql = "UPDATE USUARIO SET FIRST_NAME= '"+name+"', LAST_NAME= '"+apellido+"', AGE= "+Integer.parseInt(age)+", USER= '"+useri+"', PASS= '"+passi+"', IDN= '"+
-                                                          idn+"', NUMID= "+numid+", GENDER= '"+gender+"', EMAIL= '"+email+"', CITY= '"+city+"', NUMBER= "+number+" where ID="+iden+";";
+                                                          idn+"', NUMID= "+numid+", GENDER= '"+gender+"', EMAIL= '"+email+"', CITY= '"+city+"', NUMBER= "+number+" where USER= '"+user+"';";
            stmt.executeUpdate(sql);
            c.commit();
            
-           rs.close();
+           //rs.close();
            stmt.close();
            c.close();
         } catch ( Exception e ) {

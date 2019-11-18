@@ -39,15 +39,22 @@ public class Empresa {
         File db = new File("data/DB.db");
         if(!db.exists()){
             connection.createDB();
-            this.fill();
+            this.fillDB();
+            System.exit(0);
         }else{
-            
+            //this.fill();
         }
     }
     
     public boolean fill(){
+        
+        return true;
+    }
+    
+    
+    public boolean fillDB(){
         try{
-            int n = 20;
+            int n = 14075;
             addUsuario("cesar", "solano", 22, "rhino", "1234", "Cedula", -1, "masculino", "csolanoc@unal.edu.co", "bogota",-1, 0, 1);
             for(int i=0;i<n;i++){
                 if(i<10)
