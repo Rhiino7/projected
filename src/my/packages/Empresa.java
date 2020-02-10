@@ -32,7 +32,7 @@ public class Empresa {
     static public int columnsL = 2;
 
     public Empresa() {
-        this.eventos = new LinkedList<>(); //N eventos
+        this.eventos = new LinkedList<Evento>(); //N eventos
         this.managers = new Manager[10]; //10 managers
         this.users = new ArrayList<>(); //N usuarios
         this.lugares = new Lugar[5]; // 5 lugares
@@ -40,9 +40,11 @@ public class Empresa {
         if(!db.exists()){
             connection.createDB();
             this.fillDB();
-            System.exit(0);
+            //System.exit(0);
         }else{
-            //this.fill();
+            db.delete();
+            connection.createDB();
+            this.fillDB();
         }
     }
     
@@ -54,8 +56,8 @@ public class Empresa {
     
     public boolean fillDB(){
         try{
-            int n = 14075;
-            addUsuario("cesar", "solano", 22, "rhino", "1234", "Cedula", -1, "masculino", "csolanoc@unal.edu.co", "bogota",-1, 0, 1);
+            int n = 20;
+            addUsuario("cesar", "solano", 22, "admin", "1234", "Cedula", -1, "masculino", "csolanoc@unal.edu.co", "bogota",-1, 0, 1);
             for(int i=0;i<n;i++){
                 if(i<10)
                     addManager("manager"+i, "co"+1, i, "managerUser"+i, "managerPass"+i, "cedula", i, "masculino", "managerEmail"+1, "bogota", i, 1, 0);
@@ -73,6 +75,16 @@ public class Empresa {
                 int month = (int)(1 + Math.random()*(12-2));
                 int day = (int)(1 + Math.random()*(31-2));
                 addEvento("evento"+i, "artista"+i, managers[i%10], lugares[i%5], 2020, month, day, 10000);
+            }
+            
+            addEvento("Viva la salsa", "Varios", managers[0], lugares[0], 2020, 12, 18, 150000);
+            addEvento("Daddy Yankee", "Daddy Yankee", managers[1], lugares[1], 2020, 10, 4, 155000);
+            addEvento("Musica total", "Marco Antonio Solis", managers[2], lugares[2], 2020, 11, 7, 300000);
+            
+            Queue temp = eventos;
+            for(int i=0;i<3;i++){
+                comprar(users.get(0), (Evento) temp.remove());
+                reservar(users.get(0), (Evento) temp.remove());
             }
         } catch(Exception e){
             System.out.println("Problemas al crear datos.");
@@ -136,6 +148,8 @@ public class Empresa {
             Evento e = new Evento(nombre, artista, manager, lugar, year, month, day, precio);
             eventos.add(e);
             connection.insert("Evento", e.getData());
+            
+            
         }catch(Exception e){
             System.out.println("No se pudo agregar el evento.");
             return false;
@@ -143,6 +157,20 @@ public class Empresa {
         return true;
     }
     
+    public boolean comprar(Usuario user, Evento evento){
+        user.comprado(evento);
+        return true;
+    }
+    
+    public boolean reservar(Usuario user, Evento evento){
+        user.reservado(evento);
+        return true;
+    }
+    
+    public boolean cancelarReserva(Usuario user, String evento){
+        user.cancelarReservar(evento);
+        return true;
+    }
         
     public Queue<Evento> getEventos() {
         return eventos;

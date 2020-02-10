@@ -11,7 +11,6 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import my.packages.Empresa;
-import my.packages.Usuario;
 import my.packages.utilities.DBconnection;
 import org.netbeans.lib.awtextra.AbsoluteLayout;
 
@@ -19,24 +18,19 @@ import org.netbeans.lib.awtextra.AbsoluteLayout;
  *
  * @author rhino
  */
-public class inicioUsuario extends JFrame{
+public class init extends JFrame{
     
     private Empresa empresa;
     private DBconnection connection;
     private InicioSesion inicioSesion;
     private Registro registro;
-    private perfilUsuario perfilUsuario;
-    private String user;
-    private Usuario usuario;
-    private init inicio;
+    private SinUsuario sinUsuario;
     
     
-    public inicioUsuario(Empresa empresa, DBconnection connection, String user, Usuario usuario) {
+    public init(Empresa empresa, DBconnection connection) {
         this.empresa = empresa;
         this.connection = connection;
-        this.user = user;
-        this.usuario = usuario;
-        //this.user = perfilUsuario.getUser1();
+        sinUsuario = new SinUsuario();
         initComponents();
     }
     
@@ -196,15 +190,10 @@ public class inicioUsuario extends JFrame{
         });
         getContentPane().add(jButton_reservar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 530, -1, -1));
         
-        //perfil
+        //iniciar sesion
         jButton_iniciar.setBackground(new java.awt.Color(0, 204, 0));
         jButton_iniciar.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton_iniciar.setText("Mi perfil");
-        jButton_iniciar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton_iniciarMouseClicked(evt);
-            }
-        });
+        jButton_iniciar.setText("Iniciar sesión");
         jButton_iniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_iniciarActionPerformed(evt);
@@ -215,7 +204,7 @@ public class inicioUsuario extends JFrame{
         //crear sesion
         jButton_crear.setBackground(new java.awt.Color(255, 0, 0));
         jButton_crear.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton_crear.setText("Cerrar sesión");
+        jButton_crear.setText("Crear sesión");
         jButton_crear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_crearActionPerformed(evt);
@@ -236,69 +225,51 @@ public class inicioUsuario extends JFrame{
     }                                              
 
     private void jButton_reservar2ActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-        new Reserva(empresa, connection, user, usuario, "Musica Total").setVisible(true);
-        this.dispose();
+        sinUsuario.setVisible(true);
     }                                                 
 
     private void jButton_reservarActionPerformed(java.awt.event.ActionEvent evt) {                                                 
-        new Reserva(empresa, connection, user, usuario, "Viva la salsa").setVisible(true);
-        this.dispose();
-          
+        sinUsuario.setVisible(true);
     }                                                
 
     private void jButton_reservar1ActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-        new Reserva(empresa, connection, user, usuario, "Daddy Yankee").setVisible(true);
-        this.dispose();
+        sinUsuario.setVisible(true);
     }                                                 
 
     private void jButton_comprarActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        new Comprar(empresa, connection, user, usuario, "Viva la salsa").setVisible(true);
-        this.dispose();
-    }      
-    
-    private void jButton_comprar1ActionPerformed(java.awt.event.ActionEvent evt) {                                                 
-        new Comprar(empresa, connection, user, usuario, "Daddy Yankee").setVisible(true);
-        this.dispose();
-    }                                                
-
-    private void jButton_comprar2ActionPerformed(java.awt.event.ActionEvent evt) {                                                 
-        new Comprar(empresa, connection, user, usuario, "Musica Total").setVisible(true);
-        this.dispose();
-    } 
+        sinUsuario.setVisible(true);
+    }                                               
 
     private void jButton_iniciarActionPerformed(java.awt.event.ActionEvent evt) {                                                
-//        inicioSesion = new InicioSesion(empresa, connection);
-        Usuario prueba = usuario;
-        String pruebas = user;
-        
-        perfilUsuario = new perfilUsuario(empresa, connection, this, pruebas, prueba);
-        perfilUsuario.setVisible(true);
+        inicioSesion = new InicioSesion(empresa, connection);
+        inicioSesion.setVisible(true);
         this.dispose();
     }                                               
 
-    private void jButton_crearActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        inicio = new init(empresa, connection);
-        inicio.setVisible(true);
+    private void jButton_crearActionPerformed(java.awt.event.ActionEvent evt) {    
+        registro = new Registro(empresa, connection, this);
+        registro.setVisible(true);
         this.dispose();
 //        crearSesion = new CrearSesion(empresa, connection, this);
 //        crearSesion.setVisible(true);
+    }                                                                                
 
-    }                                             
+    private void jButton_comprar1ActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        sinUsuario.setVisible(true);
+    }                                                
 
-    private void jButton_iniciarMouseClicked(java.awt.event.MouseEvent evt) {                                             
-//        iniciarSesion.setVisible(true);
-//        this.dispose();
-    }                                            
-                                    
+    private void jButton_comprar2ActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        sinUsuario.setVisible(true);
+    }                                       
     
     
-//    public static void main(String[] args) {
-//        Empresa e = new Empresa();
-//        DBconnection connection = new DBconnection();
-//        inicioUsuario h = new inicioUsuario(e, connection);
-//        h.setVisible(true);
-//    }
-
+    public static void main(String[] args) {
+        Empresa e = new Empresa();
+        DBconnection connection = new DBconnection();
+        init h = new init(e, connection);
+        h.setVisible(true);
+    }
+    
     
     
     private javax.swing.JLabel Conciertos;

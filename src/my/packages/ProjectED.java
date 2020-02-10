@@ -28,6 +28,7 @@ public class ProjectED {
         
         initB frame = new initB(empresa, empresa.getConnection());
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
     }
     
 }

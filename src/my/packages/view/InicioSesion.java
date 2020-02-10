@@ -5,17 +5,21 @@
  */
 package my.packages.view;
 
+import java.awt.Image;
 import my.packages.utilities.DBconnection;
 import java.lang.Thread;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import my.packages.Empresa;
+import my.packages.Usuario;
 
 /**
  *
  * @author rhino
  */
-public class Inicio extends javax.swing.JFrame {
+public class InicioSesion extends javax.swing.JFrame {
 
     /**
      * Creates new form Inicio
@@ -23,12 +27,15 @@ public class Inicio extends javax.swing.JFrame {
     private Empresa empresa;
     private DBconnection connection;
     private inicioUsuario perfil;
+    private init inicio;
     private Registro registro;
-    public Inicio(Empresa empresa, DBconnection connection) {
+    private Usuario usuario;
+    public InicioSesion(Empresa empresa, DBconnection connection) {
         initComponents();
         this.empresa = empresa;
         this.connection = connection;
         this.registro = new Registro(empresa, connection, this);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -40,72 +47,79 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jLabel2 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        UNTIQUETE = new javax.swing.JLabel();
+        jButton1_atras3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Usuario");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
 
+        jFormattedTextField1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jPanel1.add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 380, 30));
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setText("Password");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
 
+        jPasswordField1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 380, 30));
+
+        jButton1.setBackground(new java.awt.Color(102, 255, 51));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton1.setText("Log in");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 150, 40));
 
+        jButton2.setBackground(new java.awt.Color(255, 102, 51));
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton2.setText("Registro");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
             }
         });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 160, 40));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 380, 30));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton2))
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel2)
-                        .addComponent(jFormattedTextField1)
-                        .addComponent(jPasswordField1)))
-                .addContainerGap(119, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addContainerGap(90, Short.MAX_VALUE))
-        );
+        UNTIQUETE.setFont(new java.awt.Font("Tempus Sans ITC", 1, 28)); // NOI18N
+        UNTIQUETE.setForeground(new java.awt.Color(255, 0, 0));
+        UNTIQUETE.setText("UNTIQUETE");
+        jPanel1.add(UNTIQUETE, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 180, 80));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 527, 416));
+
+        ImageIcon imagen6= new ImageIcon(getClass().getResource("/my/packages/utilities/images/atras.jpg"));
+        Icon ic6 = new ImageIcon(imagen6.getImage().getScaledInstance(70,30, Image.SCALE_DEFAULT));
+        jButton1_atras3.setIcon(ic6);
+        jButton1_atras3.setBackground(new java.awt.Color(255, 0, 0));
+        jButton1_atras3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1_atras3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1_atras3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 70, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -118,13 +132,22 @@ public class Inicio extends javax.swing.JFrame {
             jLabel3.setText("Usuario y contraseña correcta, bienvenido.");
             
             try {
-                Thread.sleep(3000);
+                Thread.sleep(1500);
             } catch (InterruptedException ex) {
-                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InicioSesion.class.getName()).log(Level.SEVERE, null, ex);
             }
-            this.perfil = new inicioUsuario(empresa, connection, name);
+            if(!empresa.getUsers().isEmpty()){
+                for (Usuario user : empresa.getUsers()) {
+                String prueba = user.getUser();
+                if(prueba.equals(name)){
+                    this.usuario = user;
+                    break;
+                }
+            }
+            }
+            this.perfil = new inicioUsuario(empresa, connection, usuario.getUser(), usuario);
             perfil.setVisible(true);
-            this.setVisible(false);
+            this.dispose();
         }else
             jLabel3.setText("Usuario o contraseña incorrectos, intente de nuevo.");
     }//GEN-LAST:event_jButton1MouseClicked
@@ -134,6 +157,16 @@ public class Inicio extends javax.swing.JFrame {
         this.setVisible(false);
         registro.setVisible(true);
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1_atras3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1_atras3ActionPerformed
+        inicio = new init(empresa, connection);
+        inicio.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1_atras3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,12 +204,18 @@ public class Inicio extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel UNTIQUETE;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton1_atras;
+    private javax.swing.JButton jButton1_atras1;
+    private javax.swing.JButton jButton1_atras2;
+    private javax.swing.JButton jButton1_atras3;
     private javax.swing.JButton jButton2;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     // End of variables declaration//GEN-END:variables
 }

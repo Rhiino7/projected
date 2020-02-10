@@ -5,6 +5,9 @@
  */
 package my.packages;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -27,6 +30,8 @@ public class Usuario {
     protected int manager; // 1 = manager, 0 = no manager
     protected int admin; // 1 = admin, 0 = no admin
     private Queue<Ticket> tickets;
+    private ArrayList<Evento> comprados = new ArrayList<>();
+    private ArrayList<Evento> reservados = new ArrayList<>();
     static private String[] data = new String[13];
 
     public Usuario(String first_name, String last_name, int age, String user,
@@ -150,6 +155,45 @@ public class Usuario {
 
     public static void setData(String[] data) {
         Usuario.data = data;
+    }
+
+    public ArrayList<Evento> getComprados() {
+        return comprados;
+    }
+
+    public void setComprados(ArrayList<Evento> comprados) {
+        this.comprados = comprados;
+    }
+
+    public ArrayList<Evento> getReservados() {
+        return reservados;
+    }
+
+    public void setReservados(ArrayList<Evento> reservados) {
+        this.reservados = reservados;
+    }
+
+    
+    
+    public boolean comprado(Evento evento){
+        comprados.add(evento);
+        return true;
+    }
+    
+    public boolean reservado(Evento evento){
+        reservados.add(evento);
+        return true;
+    }
+    
+    public boolean cancelarReservar(String evento){
+        for (Evento reservado : reservados) {
+            if(reservado.getNombre().equals(evento)){
+                reservados.remove(reservado);
+                break;
+            }
+            
+        }
+        return true;
     }
     
     public void fill(){
